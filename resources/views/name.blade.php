@@ -1,0 +1,1 @@
+<h3>Your group has just been created </h3>
