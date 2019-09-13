@@ -57,6 +57,8 @@ Route::prefix('admin')->group(function () {
 
     Route::get('package/{id}/delete', ['as' => 'package.delete', 'uses' => 'PackageController@destroy']);
 
+    Route::get('/selectPackage', 'PackageController@selectPackage');
+
 });	
 
 Route::get('/sendEmail', 'Admin\SponsorController@sendEmail');

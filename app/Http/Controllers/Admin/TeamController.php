@@ -15,7 +15,6 @@ use App\Yelp_address;
 use Response;
 use App\Crawl;
 use App\yelp_url;
-
 use App\trip_url;
 use Goutte\Client;
 use Symfony\Component\DomCrawler\Crawler;
@@ -82,12 +81,9 @@ class TeamController extends Controller
         $team->plan_name = $request->data;
         $team->save();
         $LastInsertId = $team->id;
-
         /* here location is a zipcode we are searching */
         $location= $add;
-
         /* yelp request for getting the businesses data */
-    
         /* for storing the businesses data in the database */
         $count=0;
         if($members<500)
@@ -97,8 +93,8 @@ class TeamController extends Controller
         {
           array_push($array_content,  $location);
           $yelp_address = Yelp_address::where('location',  $location)->get();
-           $yelp_address_count = Yelp_address::where('location',  $location)->count();
-           if($yelp_address_count>0)
+          $yelp_address_count = Yelp_address::where('location',  $location)->count();
+          if($yelp_address_count>0)
            {
             //array_push($array_content,  $l);
             while($count<40)
@@ -106,32 +102,25 @@ class TeamController extends Controller
             // echo "fetch the content";
              $yelp_address = Yelp_address::where('location',  $location)->get();
              $yelp_address_count = Yelp_address::where('location',  $location)->count();
-
              $count +=$yelp_address_count;
               //$count++;
              array_push($array_content,  $location);
-
              $location++;
             }
-           
             $sponser = Yelp_address::whereIn('location', $array_content)->get();
-            
-              foreach($sponser as $emails)
-              {
-                $sponser_email = $emails->email;
-                if(!empty($sponser_email))
-                {
-                  Mail::to($sponser_email)->send(new sponsor_email());
-                }
-              }
-            
+            // foreach($sponser as $emails)
+            //   {
+            //     $sponser_email = $emails->email;
+            //     if(!empty($sponser_email))
+            //     {
+            //       Mail::to($sponser_email)->send(new sponsor_email());
+            //     }
+            //   }
             return view('admin.sponsors.mailing')->with('data', $sponser);
-
            }
            else
           {
           $loop_data = $this->fetch_yelp_data($location);
-
           // testing
            foreach($loop_data as $city)
                 {
@@ -159,7 +148,6 @@ class TeamController extends Controller
                 $count++;
         }
       }
-    
         $sponser = Yelp_address::whereIn('location', $array_content)->get();
         return view('admin.sponsors.mailing')->with('data', $sponser);
       }
@@ -191,8 +179,15 @@ class TeamController extends Controller
             }
            
             $sponser = Yelp_address::whereIn('location', $array_content)->get();
+             foreach($sponser as $emails)
+              {
+                $sponser_email = $emails->email;
+                if(!empty($sponser_email))
+                {
+                  Mail::to($sponser_email)->send(new sponsor_email());
+                }
+              }
             return view('admin.sponsors.mailing')->with('data', $sponser);
-
            }
            else
           {

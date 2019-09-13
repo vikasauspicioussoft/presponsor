@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
-
 use App\SponsorPackage;
+use App\SponsorPackageOption;
+
 class PackageController extends Controller
 {
     /**
@@ -18,7 +17,6 @@ class PackageController extends Controller
         
         $package=SponsorPackage::get();
         return view('admin.package.index')->with('package', $package);
-
     }
 
     /**
@@ -48,6 +46,17 @@ class PackageController extends Controller
         $package->silver= $request->silver;
         $package->save();
          return redirect('admin/package/')->with('success', 'package has been created successfully');
+
+    }
+
+
+    public function selectPackage(Request $request)
+    {
+
+        $package=SponsorPackageOption::get();
+        // echo "<pre>";
+        // print_r($package);
+       return view('selectPackage')->with('package', $package);
 
     }
 

@@ -99,7 +99,7 @@ var slot_available = $("#slot_available").val();
 
 var sponsor_amount = $("#sponsor_amount").val();
 
-var totalincome = parseInt(slot_available) + parseInt(sponsor_amount);
+var totalincome = parseInt(slot_available) * parseInt(sponsor_amount);
 
 $("#total").val(totalincome);
  

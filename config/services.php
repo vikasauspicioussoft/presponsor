@@ -38,6 +38,8 @@ return [
         'model' => App\User::class,
         'key' => "pk_test_9vaQyXwlIV1jEGyPaFsGlHWH003KEFhirz",
         'secret' => "sk_test_gbYbyBeuvU9wtWVWjIhzF6k1007VmXYcKq",
+        // 'key' => "pk_live_QhjuxgvU7L0msDYbLIGhUl3L",
+        // 'secret' => "rk_live_o7nkR2bwWBVXo3qvEEKxOum000YVjuS2SN",
         'webhook' => [
             'secret' => env('STRIPE_WEBHOOK_SECRET'),
             'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),

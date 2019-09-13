@@ -1,9 +1,9 @@
 @component('mail::message')
 # Payment for the sponsorship
 
-Click here for the payment
-@component('mail::button', ['url' => 'http://localhost/presponsor/addmoney/stripe'])
-Pay now
+Click here for the Sponsorhip package Option
+@component('mail::button', ['url' => 'http://localhost/presponsor/admin/selectPackage'])
+Packages Information
 @endcomponent
 
 Thanks,<br>

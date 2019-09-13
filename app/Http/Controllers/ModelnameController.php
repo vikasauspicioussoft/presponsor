@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 ini_set('max_execution_time', 300); //300 seconds = 5 minutes
-
 use App\Modelname;
 use Illuminate\Http\Request;
 use Goutte\Client;
 use Symfony\Component\DomCrawler\Crawler;
 use App\Crawl;
-
 use App\Yelp_address;
 
 use App\yelp_url;
@@ -32,17 +30,9 @@ class ModelnameController extends Controller
 
        $key = $url->key;
 
-
-
        Mail::to('vikashverma003@gmail.com')->send(new sponsor_email());
-       
             // Mail::send(new SendEmail());
     }
-
-
-
-
-
 
     public function domainName(Request $request)
     {
@@ -72,6 +62,7 @@ class ModelnameController extends Controller
 
             // $subString = strstr($str, '.com', true);
             // echo $subString;
+            
 
 
             //echo $str;
